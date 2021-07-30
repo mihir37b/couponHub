@@ -1,1 +1,1 @@
-# couponHub
+# Coupon Hub
