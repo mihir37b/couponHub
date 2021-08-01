@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Card,Form, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
+import CenteredContainer from './CenteredContainer'
 
 
 export default function Login() {
@@ -19,7 +20,7 @@ export default function Login() {
       setError("")
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
-      history.push('/')
+      history.push('/user')
     }catch{
       setError("Failed to Log In")
     }
@@ -27,6 +28,8 @@ export default function Login() {
   }
   return (
     <>
+
+<CenteredContainer>
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Login</h2>
@@ -50,6 +53,7 @@ export default function Login() {
       <div className='w-100 text-center mt-2'>
         Need An Account? <Link to='./signup'>Sign Up</Link>
       </div>
+      </CenteredContainer>
     </>
   )
 }

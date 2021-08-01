@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { Card,Form, Button, Alert } from 'react-bootstrap'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import { Link, useHistory } from "react-router-dom"
-
+import CenteredContainer from './CenteredContainer'
 
 
 export default function UpdateProfile() {
@@ -30,7 +30,7 @@ export default function UpdateProfile() {
       promises.push(updatePassword(passwordRef.current.value))
     }
     Promise.all(promises).then(()=>{
-      history.push('/').catch(()=>{
+      history.push('/user').catch(()=>{
         setError("Failed To Update Account")
       })
     }).finally(()=>{
@@ -40,6 +40,8 @@ export default function UpdateProfile() {
   }
   return (
     <>
+
+<CenteredContainer>
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Update Profile</h2>
@@ -61,8 +63,9 @@ export default function UpdateProfile() {
           </Form>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'><Link to='/'>Cancel</Link>
+      <div className='w-100 text-center mt-2'><Link to='/user'>Cancel</Link>
       </div>
+    </CenteredContainer>
     </>
   )
 }
