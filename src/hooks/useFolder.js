@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/AuthContext'
 const ACTIONS = { SELECT_FOLDER: 'select-folder',
 UPDATE_FOLDER:'update-folder',SET_CHILD_FOLDERS:'set-child-folders'}
 
-const ROOT_FOLDER = { name: "Root", id: null, path: [] }
+export const ROOT_FOLDER = { name: "Root", id: null, path: [] }
 
 function reducer(state,{ type, payload}){
    switch(type){
@@ -62,7 +62,7 @@ export function useFolder(folderId = null, folder = null ){
   },[folderId])
    
   useEffect(()=>{
-    return database.folders.where("parentId", "==", folderId).where("userId", "==", currentUser.uid).onSnapshot(snapshot=>{
+    return database.folders.where("parentId", "==", folderId).where("userId", "==", currentUser.uid).orderBy("createdAt").onSnapshot(snapshot=>{
       dispatch({
         type:ACTIONS.SET_CHILD_FOLDERS,
         payload: {childFolders: snapshot.docs.map(database.formatDoc)}
