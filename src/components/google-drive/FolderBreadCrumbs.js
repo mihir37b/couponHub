@@ -15,8 +15,8 @@ export default function FolderBreadCrumbs({ currentFolder }) {
         key={folder.id}
         linkAs={Link}
         linkProps={{
-          to: folder.id?`/folder/${folder.id}`: '/'
-        }}
+          to: { pathname: folder.id ?`/folder/${folder.id}`: '/', state: { folder: {...folder, path: path.slice(1,index)}}
+        }}}
         className="text-truncate d-inline-block"
         style={{ maxWidth:"150px"}} >
         {folder.name}
